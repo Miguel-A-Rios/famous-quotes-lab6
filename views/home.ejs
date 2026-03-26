@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <%- include("partials/header.ejs") %>
+
+
+
+</head>
+<body>
+    
+    <h1>Quote Finder</h1>
+    <p>Find your quotes by either a keyword in the quote or the name of the author</p>
+
+    <form action="/searchByKeyword" method="GET">
+        Keyword: <input type="text" name="keyword">
+        <button>Search by keyword</button>
+    </form>
+
+    <form action="/searchByAuthor" method="GET">
+        Author: <input type="text" name="author">
+        <button>Search by author</button>
+    </form>
+
+    <form action="/searchByCategory" method="GET">
+        Category: <input type="text" name="category">
+        <button>Search by category</button>
+    </form>
+
+    <form action="/searchByLikes" method="GET">
+        Likes: <input type="number" name="likeStart">
+         to <input type="number" name="likeEnd">
+        <button>Search by likes</button>
+    </form>
+    <%- include("partials/footer.ejs") %>
+</body>
+
+</html>

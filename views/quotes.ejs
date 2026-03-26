@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+     <%- include("partials/header.ejs") %>
+</head>
+<body>
+    <h1 class="title-like">Quotes matching your keyword or category</h1>
+    <ul>
+        <% rows.forEach(row => { %>
+            <li class="quote"><%= row.quote %> - <%= row.firstName %> <%= row.lastName %></li>
+        <% }) %>
+    </ul>
+    <%- include("partials/footer.ejs") %>
+</html>
