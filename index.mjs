@@ -1,15 +1,25 @@
 import express from 'express';
 import mysql from 'mysql2/promise';
+import 'dotenv/config';
+
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 //for Express to get values using the POST method
 app.use(express.urlencoded({extended:true}));
 //setting up database connection pool, replace values in red
+// const pool = mysql.createPool({
+//     host: "sh4ob67ph9l80v61.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+//     user: "w9c7lwn8um1o99yj",
+//     password: "u3rw8lbcasz2h307",
+//     database: "pyn5h5u7iu857dd2",
+//     connectionLimit: 10,
+//     waitForConnections: true
+// });
 const pool = mysql.createPool({
     host: "sh4ob67ph9l80v61.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "w9c7lwn8um1o99yj",
-    password: "u3rw8lbcasz2h307",
+    user: "process.env.DB_USERNAME",
+    password: "process.env.DB_PWD",
     database: "pyn5h5u7iu857dd2",
     connectionLimit: 10,
     waitForConnections: true
