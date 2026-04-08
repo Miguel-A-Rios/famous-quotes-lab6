@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quotes</title>
-     <%- include("partials/header.ejs") %>
+    <%- include("partials/header.ejs") %>
 </head>
+
 <body>
     <h1 class="title-like">Quotes matching your keyword or category</h1>
-    <ul>
-        <% rows.forEach(row => { %>
+    <!-- <ul> -->
+    <!-- <% rows.forEach(row => { %>
             <li class="quote"><%= row.quote %> - </li>
                 <a href="/getAuthorInfo"> 
                     <%= row.firstName %> <%= row.lastName %></a><br>
-        <% }) %>
-    </ul>
+        <% }) %> -->
+    <!-- </ul> -->
+    <div class="container">
+
+        <% for (let i of rows) { %>
+            <i class="fs-5">
+                <%= i.quote %>
+            </i><br>
+            <a href="#" class="authorNames" authorId="<%= i.authorId %>">
+                <%= i.firstName %> <%= i.lastName %> </a><br><br>
+            <% } %>
+    </div>
+    <!-- creating modal window -->
+    <dialog id="authorModal">
+    <div id="authorInfo">
+        <button id="closeModal"> CLose </button>
+        <h1 id="authorName"></h1>
+        <img id="authorPicture" width="300"> 
+    </div>
+</dialog>
+    <script src="js/quotes.js"></script>
     <%- include("partials/footer.ejs") %>
+
 </html>

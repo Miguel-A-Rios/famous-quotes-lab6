@@ -18,21 +18,38 @@ app.use(express.urlencoded({extended:true}));
 // });
 const pool = mysql.createPool({
     host: "sh4ob67ph9l80v61.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "process.env.DB_USERNAME",
-    password: "process.env.DB_PWD",
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PWD,
     database: "pyn5h5u7iu857dd2",
     connectionLimit: 10,
     waitForConnections: true
 });
 //routes
 app.get('/', async (req, res) => {
-//    res.render('home');
-let sql = `SELECT authorId, firstName, lastName
-              FROM authors
-              ORDER BY lastName`;
-   const [authors] = await pool.query(sql);              
-   res.render('home.ejs', {authors})
+    let sql = `SELECT authorId, firstName, lastName
+               FROM authors
+               ORDER BY lastName`;
+    const [authors] = await pool.query(sql);              
+    res.render('home.ejs', {authors})
+ });
+ // API to get the author information based on an author Id
+app.get('/api/author/:author_Id', async (req, res) => {
+    console.log(req);
+    let authorId = req.params.author_Id;
+    let sql = `SELECT *
+               FROM authors
+               WHERE authorId = ?`;
+   const [authorInfo] = await pool.query(sql, [authorId]);              
+   res.send(authorInfo); // displays info in JSON format
 });
+// app.get('/', async (req, res) => {
+//     //    res.render('home');
+//     let sql = `SELECT authorId, firstName, lastName
+//                   FROM authors
+//                   ORDER BY lastName`;
+//        const [authors] = await pool.query(sql);              
+//        res.render('home.ejs', {authors})
+//     });
 app.get("/dbTest", async(req, res) => {
    try {
         const [rows] = await pool.query("SELECT CURDATE()");
@@ -111,6 +128,6 @@ app.get("/searchByLikes", async(req, res) => {
     }
 });//dbTest
 
-app.listen(3000, ()=>{
+app.listen(3001, ()=>{
     console.log("Express server running")
 })
