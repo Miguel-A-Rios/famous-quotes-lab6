@@ -10,9 +10,29 @@
 <body>
     <h1 class="title-like">Search by Likes</h1>
     <ul>
+
         <% rows.forEach(row => { %>
-            <li class="quote"><%= row.quote %> - <%= row.firstName %> <%= row.lastName %></li>
-        <% }) %>
+            <li class="quote">
+                <%= row.quote %> - 
+                <a href="#" class="authorNames" authorId="<%= row.authorId %>">
+                    <%= row.firstName %> <%= row.lastName %>
+                </a>
+            </li>        <% }) %>
     </ul>
+    <!-- creating modal window -->
+    <dialog id="authorModal">
+        <div id="authorInfo">
+            <button id="closeModal"> Close </button>
+            <h1 id="authorName"></h1>
+            <img id="authorPicture" width="300">
+            <h2 id="authorDOB"></h2>
+            <h2 id="authorDOD"></h2>
+            <h2 id="authorSex"></h2>
+            <h2 id="authorCountry"></h2>
+            <h2 id="authorProfession"></h2>
+            <h2 id="authorBio"></h2>
+        </div>
+    </dialog>
+    <script src="/js/quotes.js"></script>
     <%- include("partials/footer.ejs") %>
 </html>

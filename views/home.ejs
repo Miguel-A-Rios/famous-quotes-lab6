@@ -16,6 +16,7 @@
         Keyword: <input type="text" name="keyword">
         <button>Search by keyword</button>
     </form>
+    <h2 id="answer"></h2>
 
     <form action="/searchByAuthor" method="GET">
         Author: <input type="text" name="author">
@@ -41,7 +42,9 @@
 
             let keyword = document.querySelector("input[name=keyword]").value;
             if(keyword.length < 3){
-                alert("keyword must be at least 3 characters");
+                // alert("keyword must be at least 3 characters");
+                document.querySelector("#answer").textContent = "Keyword must use at least 3 characters";
+                document.querySelector("#answer").style.color = "red";
                 event.preventDefault(); // prevents the form submission
             }
         }

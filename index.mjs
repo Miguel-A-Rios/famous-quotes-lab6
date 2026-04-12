@@ -17,10 +17,10 @@ app.use(express.urlencoded({extended:true}));
 //     waitForConnections: true
 // });
 const pool = mysql.createPool({
-    host: "sh4ob67ph9l80v61.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    host: "qn0cquuabmqczee2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     user: process.env.DB_USERNAME,
     password: process.env.DB_PWD,
-    database: "pyn5h5u7iu857dd2",
+    database: "l2mhd72tdv4zcjte",
     connectionLimit: 10,
     waitForConnections: true
 });
@@ -63,10 +63,10 @@ app.get("/dbTest", async(req, res) => {
 app.get("/searchByKeyword", async(req, res) => {
    try {
         let keyword = req.query.keyword;
-    let sql = `SELECT quote, firstName, lastname AS lastName
-                   FROM quotes
-                   NATURAL JOIN authors
-            WHERE quote LIKE ?`; 
+    let sql = `SELECT *
+               FROM quotes
+               NATURAL JOIN authors
+               WHERE quote LIKE ?`; 
 
         let sqlParams = [`%${keyword}%`];
         const [rows] = await pool.query(sql, sqlParams);
@@ -80,10 +80,10 @@ app.get("/searchByKeyword", async(req, res) => {
 app.get("/searchByAuthor", async(req, res) => {
    try {
         let author = req.query.author;
-    let sql = `SELECT quote, firstName, lastname AS lastName
-                   FROM quotes
-                   NATURAL JOIN authors
-           WHERE CONCAT(firstName, ' ', lastName) LIKE ?`;
+    let sql = `SELECT *
+               FROM quotes
+               NATURAL JOIN authors
+               WHERE CONCAT(firstName, ' ', lastName) LIKE ?`;
         let sqlParams = [`%${author}%`];
         const [rows] = await pool.query(sql, sqlParams);
         res.render('quotesA.ejs', {rows});
@@ -97,7 +97,7 @@ app.get("/searchByAuthor", async(req, res) => {
 app.get("/searchByCategory", async(req, res) => {
    try {
         let category = req.query.category;
-        let sql = `SELECT DISTINCT quote, firstName, lastname AS lastName, category
+        let sql = `SELECT DISTINCT *
                    FROM quotes
                    NATURAL JOIN authors
                    WHERE category LIKE ?`; 
@@ -114,7 +114,7 @@ app.get("/searchByLikes", async(req, res) => {
    try {
         let likeStart = req.query.likeStart;
         let likeEnd = req.query.likeEnd;
-    let sql = `SELECT quote, firstName, lastName
+    let sql = `SELECT *
                FROM quotes
                NATURAL JOIN authors
                WHERE likes BETWEEN ? AND ?`;
