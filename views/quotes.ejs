@@ -11,14 +11,8 @@
 
 <body>
     <h1 class="title-like">Quotes matching your keyword or category</h1>
-    <!-- <ul> -->
-    <!-- <% rows.forEach(row => { %>
-            <li class="quote"><%= row.quote %> - </li>
-                <a href="/getAuthorInfo"> 
-                    <%= row.firstName %> <%= row.lastName %></a><br>
-        <% }) %> -->
-    <!-- </ul> -->
-    <div class="container">
+
+    <!-- <div class="container">
 
         <% for (let i of rows) { %>
             <i class="fs-5">
@@ -27,7 +21,21 @@
             <a href="#" class="authorNames" authorId="<%= i.authorId %>">
                 <%= i.firstName %> <%= i.lastName %> </a><br><br>
             <% } %>
-    </div>
+    </div> -->
+    
+    <!-- with bullet points -->
+    <ul class="container">
+        <% for (let i of rows) { %>
+            <li class="quote">
+                <i class="fs-5">
+                    <%= i.quote %>
+                </i><br>
+                <a href="#" class="authorNames" authorId="<%= i.authorId %>">
+                    <%= i.firstName %> <%= i.lastName %>
+                </a>
+            </li>
+        <% } %>
+    </ul>
     <!-- creating modal window -->
     <dialog id="authorModal">
         <div id="authorInfo">

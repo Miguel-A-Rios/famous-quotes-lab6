@@ -15,11 +15,12 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-image: url("https://wallpapercave.com/wp/wp14624084.jpg");
+    background-image: url("https://asset.gecdesigns.com/img/wallpapers/beautiful-magical-misty-mountains-reflection-river-ultra-hd-wallpaper-4k-sr10012420-1706505766369-cover.webp");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    color: lavender;
 }
 
 .quote {
@@ -32,11 +33,17 @@ body {
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: purple;
+    color: black;
     padding: 5px 5px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     border-color: #333 ;
+}
+button:hover {
+    background-color: plum;
+    color: white;
+    box-shadow: 0 0 15px lightgrey;
+    transition: .9s;
 }
