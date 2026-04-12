@@ -15,8 +15,10 @@ async function displayAuthorInfo() {
     document.querySelector("#authorName").textContent = data[0].firstName + " " + data[0].lastName;
     document.querySelector("#authorPicture").src = data[0].portrait;
     document.querySelector("#authorBio").textContent = data[0].biography;
-    document.querySelector("#authorDOB").textContent = data[0].dob;
-    document.querySelector("#authorDOD").textContent = data[0].dod;
+    // document.querySelector("#authorDOB").textContent = data[0].dob;
+    document.querySelector("#authorDOB").textContent = data[0].dob.split("T")[0];
+    // document.querySelector("#authorDOD").textContent = data[0].dod;
+    document.querySelector("#authorDOD").textContent = data[0].dod ? data[0].dod.split("T")[0] : "Still alive";
     document.querySelector("#authorSex").textContent = data[0].sex;
     document.querySelector("#authorCountry").textContent = data[0].country;
     document.querySelector("#authorProfession").textContent = data[0].profession;
