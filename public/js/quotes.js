@@ -1,14 +1,14 @@
 // closes modal
 document.querySelector("#closeModal").addEventListener("click", () => {document.querySelector("#authorModal").close()})
         
-let authorLinks = document.querySelectorAll("authorNames");
+let authorLinks = document.querySelectorAll(".authorNames");
 for (let i of authorLinks) {
     i.addEventListener("click", displayAuthorInfo);
 }
 
 async function displayAuthorInfo() {
     let authorId = this.getAttribute("authorId");
-    alert("displaying author info..." + authorId);
+    // alert("displaying author info..." + authorId);
     let url = "/api/author/"+authorId;
     let response = await fetch(url);
     let data = await response.json();
@@ -18,3 +18,4 @@ async function displayAuthorInfo() {
     // enable modal
     document.querySelector("#authorModal").showModal();
 }
+
